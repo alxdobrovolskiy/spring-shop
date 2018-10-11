@@ -1,13 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="tag" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="tag" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
+    <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/base-min.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/tables-min.css" />" rel="stylesheet">
     <title>Shop Store</title>
 </head>
 <body>
 <h1>Store</h1>
-<form:
+<c:choose>
+<c:when test="${not empty products}">
+    <table class="pure-table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Currency</th>
+                <th>Unit</th>
+            </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="product" items="${products}" varStatus="loopStatus">
+            <tr class="${loopStatus.index % 2 == 0 ? '' : 'pure-table-odd'}">
+                <td>${product.name}</td>
+                <td>${product.price}</td>
+                <td>${product.currency.name}</td>
+                <td>${product.unitMeasure.name}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</c:when>
+<c:otherwise>
+    <label>There are no products</label>
+</c:otherwise>
+</c:choose>
+
 </body>
 </html>
