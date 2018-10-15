@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="tag" uri="http://www.springframework.org/tags" %>
@@ -10,7 +10,8 @@
     <title>Shop Store</title>
 </head>
 <body>
-<h1>Store</h1>
+Language : <a href="?lang=en">EN</a> | <a href="?lang=ua">UA</a>
+<h1><tag:message code="store.label" text="Not Found" /></h1>
 <c:choose>
 <c:when test="${not empty products}">
     <table class="pure-table">

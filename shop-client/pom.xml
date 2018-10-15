@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.alxdobr.springshop</groupId>
-	<artifactId>shop</artifactId>
+	<artifactId>shop-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>shop</name>
+	<name>shop-client</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
