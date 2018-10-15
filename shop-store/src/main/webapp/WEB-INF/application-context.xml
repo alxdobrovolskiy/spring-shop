@@ -4,15 +4,23 @@
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xmlns:context="http://www.springframework.org/schema/context"
 	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
 		">
 
-	<!--<jdbc:embedded-database id="dataSource">-->
-		<!--<jdbc:script location="classpath:lab/db/hsql/schema.sql" />-->
-	<!--</jdbc:embedded-database>-->
+	<jdbc:embedded-database id="dataSource">
+		<jdbc:script location="classpath:/sql/create_database.sql" />
+	</jdbc:embedded-database>
+
+    <bean id="entitymManager" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="packagesToScan" value="" />
+        <property name="persistenceUnitName" value="springframework.lab.orm.jpa" />
+        <property name="persistenceProviderClass" value="org.hibernate.ejb."/>
+    </bean>
 
 	<!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
 		<!--<property name="dataSource" ref="dataSource" />-->
