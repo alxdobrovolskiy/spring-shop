@@ -26,7 +26,7 @@ public class ProductsJpaDaoImpl extends AbstractJpaDao implements ProductsDao {
     public List<Product> getAllProducts() {
         List<Product> products = null;
         EntityManager em = emf.createEntityManager();
-        products = (List<Product>) em.createNamedQuery("getAllProducts", Product.class);
+        products = (List<Product>) em.createNamedQuery("getAllProducts").getResultList();
 
         if (em != null) {
             em.close();

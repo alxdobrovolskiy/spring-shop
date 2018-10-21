@@ -11,6 +11,9 @@ public class Currency {
     private String name;
     private Integer code;
 
+    public Currency() {
+    }
+
     public Currency(Integer id, String name, Integer code) {
         this.id = id;
         this.name = name;

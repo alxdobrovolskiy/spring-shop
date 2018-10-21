@@ -7,8 +7,8 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@NamedQuery(name="getAllProducts", query = "SELECT p FROM Product p")
 @Table(name = "Product")
-@NamedNativeQuery(name="getAllProducts", query = "select * from PRODUCT")
 public class Product {
 
     private Integer id;
@@ -16,6 +16,9 @@ public class Product {
     private Double price;
     private Currency currency;
     private UnitMeasure unitMeasure;
+
+    public Product() {
+    }
 
     public Product(Integer id, String name, Double price) {
         this.id = id;
@@ -51,7 +54,7 @@ public class Product {
         this.price = price;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CURRENCY_ID")
     public Currency getCurrency() {
         return currency;
@@ -61,7 +64,7 @@ public class Product {
         this.currency = currency;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "UNITMEASURE_ID")
     public UnitMeasure getUnitMeasure() {
         return unitMeasure;

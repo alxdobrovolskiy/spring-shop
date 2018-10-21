@@ -10,6 +10,9 @@ public class UnitMeasure {
     private Integer id;
     private String name;
 
+    public UnitMeasure() {
+    }
+
     public UnitMeasure(Integer id, String name) {
         this.id = id;
         this.name = name;
@@ -49,7 +52,7 @@ public class UnitMeasure {
     }
 
     @Override
-    public String toString() {
+    public String   toString() {
         return "UnitMeasure{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
