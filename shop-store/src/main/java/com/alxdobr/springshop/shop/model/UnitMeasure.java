@@ -4,6 +4,9 @@ public class UnitMeasure {
 
     private String name;
 
+    public UnitMeasure() {
+    }
+
     public UnitMeasure(String name) {
         this.name = name;
     }
@@ -18,7 +21,7 @@ public class UnitMeasure {
 
     @Override
     public String toString() {
-        return "UnitMeasure{" +
+        return "UnitMeasureEntity{" +
                 "name='" + name + '\'' +
                 '}';
     }

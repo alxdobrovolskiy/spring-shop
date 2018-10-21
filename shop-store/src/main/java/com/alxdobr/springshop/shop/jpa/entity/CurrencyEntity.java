@@ -3,18 +3,18 @@ package com.alxdobr.springshop.shop.jpa.entity;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "CURRENCY")
 @Table(name = "CURRENCY")
-public class Currency {
+public class CurrencyEntity {
 
     private Integer id;
     private String name;
     private Integer code;
 
-    public Currency() {
+    public CurrencyEntity() {
     }
 
-    public Currency(Integer id, String name, Integer code) {
+    public CurrencyEntity(Integer id, String name, Integer code) {
         this.id = id;
         this.name = name;
         this.code = code;
@@ -52,7 +52,7 @@ public class Currency {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Currency currency = (Currency) o;
+        CurrencyEntity currency = (CurrencyEntity) o;
         return Objects.equals(id, currency.id) &&
                 Objects.equals(name, currency.name) &&
                 Objects.equals(code, currency.code);
@@ -65,7 +65,7 @@ public class Currency {
 
     @Override
     public String toString() {
-        return "Currency{" +
+        return "CurrencyEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", code=" + code +

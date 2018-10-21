@@ -5,6 +5,9 @@ public class Currency {
     private String name;
     private Integer code;
 
+    public Currency() {
+    }
+
     public Currency(String name, Integer code) {
         this.name = name;
         this.code = code;
@@ -28,7 +31,7 @@ public class Currency {
 
     @Override
     public String toString() {
-        return "Currency{" +
+        return "CurrencyEntity{" +
                 "name='" + name + '\'' +
                 ", code=" + code +
                 '}';

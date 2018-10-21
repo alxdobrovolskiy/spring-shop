@@ -1,6 +1,6 @@
 package com.alxdobr.springshop.shop.jpa;
 
-import com.alxdobr.springshop.shop.jpa.entity.Product;
+import com.alxdobr.springshop.shop.jpa.entity.ProductEntity;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -10,11 +10,11 @@ import java.util.List;
 public class ProductsJpaDaoImpl extends AbstractJpaDao implements ProductsDao {
 
     @Override
-    public void addProduct(Product product) {
+    public void addProduct(ProductEntity productEntity) {
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
-        em.persist(product);
+        em.persist(productEntity);
         em.getTransaction().commit();
 
         if (em != null) {
@@ -23,14 +23,14 @@ public class ProductsJpaDaoImpl extends AbstractJpaDao implements ProductsDao {
     }
 
     @Override
-    public List<Product> getAllProducts() {
-        List<Product> products = null;
+    public List<ProductEntity> getAllProducts() {
+        List<ProductEntity> productEntities = null;
         EntityManager em = emf.createEntityManager();
-        products = (List<Product>) em.createNamedQuery("getAllProducts").getResultList();
+        productEntities = (List<ProductEntity>) em.createNamedQuery("getAllProducts").getResultList();
 
         if (em != null) {
             em.close();
         }
-        return products;
+        return productEntities;
     }
 }

@@ -3,17 +3,17 @@ package com.alxdobr.springshop.shop.jpa.entity;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "UNITMEASURE")
 @Table(name = "UNITMEASURE")
-public class UnitMeasure {
+public class UnitMeasureEntity {
 
     private Integer id;
     private String name;
 
-    public UnitMeasure() {
+    public UnitMeasureEntity() {
     }
 
-    public UnitMeasure(Integer id, String name) {
+    public UnitMeasureEntity(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -41,7 +41,7 @@ public class UnitMeasure {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UnitMeasure that = (UnitMeasure) o;
+        UnitMeasureEntity that = (UnitMeasureEntity) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name);
     }
@@ -53,7 +53,7 @@ public class UnitMeasure {
 
     @Override
     public String   toString() {
-        return "UnitMeasure{" +
+        return "UnitMeasureEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

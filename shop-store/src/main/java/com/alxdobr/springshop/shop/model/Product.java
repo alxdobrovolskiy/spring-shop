@@ -8,6 +8,9 @@ public class Product {
     private Currency currency;
     private UnitMeasure unitMeasure;
 
+    public Product() {
+    }
+
     public Product(String name, Double price, Currency currency, UnitMeasure unitMeasure) {
         this.name = name;
         this.price = price;
@@ -49,7 +52,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "ProductEntity{" +
                 "name='" + name + '\'' +
                 ", price=" + price +
                 ", currency=" + currency +

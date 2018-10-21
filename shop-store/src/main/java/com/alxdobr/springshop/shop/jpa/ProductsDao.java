@@ -1,12 +1,12 @@
 package com.alxdobr.springshop.shop.jpa;
 
-import com.alxdobr.springshop.shop.jpa.entity.Product;
+import com.alxdobr.springshop.shop.jpa.entity.ProductEntity;
 
 import java.util.List;
 
 public interface ProductsDao {
 
-    public void addProduct(Product product);
+    public void addProduct(ProductEntity productEntity);
 
-    public List<Product> getAllProducts();
+    public List<ProductEntity> getAllProducts();
 }

@@ -1,26 +1,24 @@
 package com.alxdobr.springshop.shop.jpa.entity;
 
 
-import org.hibernate.annotations.NamedNativeQuery;
-
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "Product")
 @NamedQuery(name="getAllProducts", query = "SELECT p FROM Product p")
 @Table(name = "Product")
-public class Product {
+public class ProductEntity {
 
     private Integer id;
     private String name;
     private Double price;
-    private Currency currency;
-    private UnitMeasure unitMeasure;
+    private CurrencyEntity currencyEntity;
+    private UnitMeasureEntity unitMeasureEntity;
 
-    public Product() {
+    public ProductEntity() {
     }
 
-    public Product(Integer id, String name, Double price) {
+    public ProductEntity(Integer id, String name, Double price) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -56,49 +54,49 @@ public class Product {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CURRENCY_ID")
-    public Currency getCurrency() {
-        return currency;
+    public CurrencyEntity getCurrencyEntity() {
+        return currencyEntity;
     }
 
-    public void setCurrency(Currency currency) {
-        this.currency = currency;
+    public void setCurrencyEntity(CurrencyEntity currencyEntity) {
+        this.currencyEntity = currencyEntity;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "UNITMEASURE_ID")
-    public UnitMeasure getUnitMeasure() {
-        return unitMeasure;
+    public UnitMeasureEntity getUnitMeasureEntity() {
+        return unitMeasureEntity;
     }
 
-    public void setUnitMeasure(UnitMeasure unitMeasure) {
-        this.unitMeasure = unitMeasure;
+    public void setUnitMeasureEntity(UnitMeasureEntity unitMeasureEntity) {
+        this.unitMeasureEntity = unitMeasureEntity;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(id, product.id) &&
-                Objects.equals(name, product.name) &&
-                Objects.equals(price, product.price) &&
-                Objects.equals(currency, product.currency) &&
-                Objects.equals(unitMeasure, product.unitMeasure);
+        ProductEntity productEntity = (ProductEntity) o;
+        return Objects.equals(id, productEntity.id) &&
+                Objects.equals(name, productEntity.name) &&
+                Objects.equals(price, productEntity.price) &&
+                Objects.equals(currencyEntity, productEntity.currencyEntity) &&
+                Objects.equals(unitMeasureEntity, productEntity.unitMeasureEntity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, currency, unitMeasure);
+        return Objects.hash(id, name, price, currencyEntity, unitMeasureEntity);
     }
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "ProductEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", currency=" + currency +
-                ", unitMeasure=" + unitMeasure +
+                ", currencyEntity=" + currencyEntity +
+                ", unitMeasureEntity=" + unitMeasureEntity +
                 '}';
     }
 }
