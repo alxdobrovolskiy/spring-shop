@@ -8,6 +8,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +25,6 @@ public class StoreController {
 
     private static Logger log = LogManager.getLogger(StoreController.class.getName());
 
-
     @Autowired
     StoreService storeService;
 
@@ -37,19 +38,24 @@ public class StoreController {
     public String initialLoad(Model model){
         System.out.println("invoked initialLoad");
 
+        model.addAttribute("product", new Product());
         model.addAttribute("products", storeService.getAllProducts());
         return "store";
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView processSubmit(@Valid Product product, Errors errors){
+    @RequestMapping(value = "/processSubmit", method = RequestMethod.POST)
+    public ModelAndView processSubmit(@Valid @ModelAttribute Product product, Errors errors){
         if (errors.hasErrors()){
-            log.warn("Add product valodation failed");
+            log.warn("Add product validation failed");
             return new ModelAndView("store");
         } else {
+            log.info(product);
+            log.info("store service == null => " + (storeService == null));
+
             storeService.addProduct(product);
 
             ModelAndView mav = new ModelAndView("store");
+            mav.addObject("product", new Product());
             mav.addObject("products", storeService.getAllProducts());
 
             return mav;

@@ -13,7 +13,7 @@
 Language : <a href="?lang=en">EN</a> | <a href="?lang=ua">UA</a>
 <h1><tag:message code="store.label" text="Not Found" /></h1>
 <c:choose>
-<c:when test="${not empty productEntities}">
+<c:when test="${not empty products}">
     <table class="pure-table">
         <thead>
             <tr>
@@ -24,23 +24,23 @@ Language : <a href="?lang=en">EN</a> | <a href="?lang=ua">UA</a>
             </tr>
         </thead>
         <tbody>
-        <c:forEach var="productEntity" items="${productEntities}" varStatus="loopStatus">
+        <c:forEach var="product" items="${products}" varStatus="loopStatus">
             <tr class="${loopStatus.index % 2 == 0 ? '' : 'pure-table-odd'}">
-                <td>${productEntity.name}</td>
-                <td>${productEntity.price}</td>
-                <td>${productEntity.currencyEntity.name}</td>
-                <td>${productEntity.unitMeasureEntity.name}</td>
+                <td>${product.name}</td>
+                <td>${product.price}</td>
+                <td>${product.currency.name}</td>
+                <td>${product.unitMeasure.name}</td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
 </c:when>
 <c:otherwise>
-    <label>There are no productEntities</label>
+    <label>There are no products</label>
 </c:otherwise>
 </c:choose>
 
-<form:form commandName="product">
+<form:form modelAttribute="product" action="/store/processSubmit" method="post">
     <table>
         <tr>
             <td>Product</td>

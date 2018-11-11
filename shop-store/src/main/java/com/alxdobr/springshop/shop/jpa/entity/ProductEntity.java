@@ -52,7 +52,7 @@ public class ProductEntity {
         this.price = price;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn(name = "CURRENCY_ID")
     public CurrencyEntity getCurrencyEntity() {
         return currencyEntity;
@@ -62,7 +62,7 @@ public class ProductEntity {
         this.currencyEntity = currencyEntity;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn(name = "UNITMEASURE_ID")
     public UnitMeasureEntity getUnitMeasureEntity() {
         return unitMeasureEntity;

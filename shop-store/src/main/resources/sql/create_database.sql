@@ -18,7 +18,7 @@ name varchar(64) not null,
 price float,
 currency_id integer,
 unitMeasure_id integer,
-foreign key(currency_id) references public.currencyEntity(id),
-foreign key(unitMeasure_id) references public.unitMeasureEntity(id)
+foreign key(currency_id) references public.currency(id),
+foreign key(unitMeasure_id) references public.unitMeasure(id)
 );
 
