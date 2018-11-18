@@ -1,4 +1,4 @@
-package com.alxdobr.springshop.shop.controller;
+package com.alxdobr.store.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

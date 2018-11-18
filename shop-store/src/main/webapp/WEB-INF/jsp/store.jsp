@@ -10,8 +10,9 @@
     <title>Shop Store</title>
 </head>
 <body>
-Language : <a href="?lang=en">EN</a> | <a href="?lang=ua">UA</a>
+Language : <a href="/store?lang=en">EN</a> | <a href="/store?lang=ua">UA</a>
 <h1><tag:message code="store.label" text="Not Found" /></h1>
+<h2><tag:message code="store.listProducts" text="Not Found" /></h2>
 <c:choose>
 <c:when test="${not empty products}">
     <table class="pure-table">
@@ -19,8 +20,7 @@ Language : <a href="?lang=en">EN</a> | <a href="?lang=ua">UA</a>
             <tr>
                 <th>Product</th>
                 <th>Price</th>
-                <th>Currency</th>
-                <th>Unit</th>
+                <th>Amount</th>
             </tr>
         </thead>
         <tbody>
@@ -28,8 +28,7 @@ Language : <a href="?lang=en">EN</a> | <a href="?lang=ua">UA</a>
             <tr class="${loopStatus.index % 2 == 0 ? '' : 'pure-table-odd'}">
                 <td>${product.name}</td>
                 <td>${product.price}</td>
-                <td>${product.currency.name}</td>
-                <td>${product.unitMeasure.name}</td>
+                <td>${product.amount}</td>
             </tr>
         </c:forEach>
         </tbody>
@@ -39,7 +38,7 @@ Language : <a href="?lang=en">EN</a> | <a href="?lang=ua">UA</a>
     <label>There are no products</label>
 </c:otherwise>
 </c:choose>
-
+<h2><tag:message code="store.newProduct" text="Not Found" /></h2>
 <form:form modelAttribute="product" action="/store/processSubmit" method="post">
     <table>
         <tr>
@@ -53,19 +52,9 @@ Language : <a href="?lang=en">EN</a> | <a href="?lang=ua">UA</a>
             <td style="color: red; font-size: small;"><form:errors path="price" /></td>
         </tr>
         <tr>
-            <td>Currency name</td>
-            <td><form:input path="currency.name"/></td>
-            <td style="color: red; font-size: small;"><form:errors path="currency.name" /></td>
-        </tr>
-        <tr>
-            <td>Currency code</td>
-            <td><form:input path="currency.code"/></td>
-            <td style="color: red; font-size: small;"><form:errors path="currency.code" /></td>
-        </tr>
-        <tr>
-            <td>Unit</td>
-            <td><form:input path="unitMeasure.name"/></td>
-            <td style="color: red; font-size: small;"><form:errors path="unitMeasure.name" /></td>
+            <td>Amount</td>
+            <td><form:input path="amount"/></td>
+            <td style="color: red; font-size: small;"><form:errors path="price" /></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Save Changes" /></td>

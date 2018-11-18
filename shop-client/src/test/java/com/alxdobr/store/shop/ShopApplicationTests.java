@@ -1,4 +1,4 @@
-package com.alxdobr.springshop.shop;
+package com.alxdobr.store.shop;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

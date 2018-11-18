@@ -1,9 +1,12 @@
-CREATE TABLE IF NOT EXISTS CURRENCY
+CREATE TABLE IF NOT EXISTS USER
 (
 id integer not null PRIMARY KEY AUTO_INCREMENT,
 name varchar(8) not null,
-code integer
+name integer,
+role_id integer,
 );
+
+
 
 CREATE TABLE IF NOT EXISTS UnitMeasure
 (
