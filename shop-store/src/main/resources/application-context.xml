@@ -16,6 +16,7 @@
     <import resource="security-context.xml"/>
     <context:annotation-config/>
     <context:component-scan base-package="com.alxdobr.store" />
+    <context:component-scan base-package="com.alxdobr.store.controller" />
 
 	<!--<jdbc:embedded-database id="dataSource" type="HSQL">-->
 		<!--&lt;!&ndash;<jdbc:script location="classpath:/sql/create_database.sql" />&ndash;&gt;-->
@@ -24,7 +25,8 @@
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.h2.Driver" />
-        <property name="url" value="jdbc:h2:tcp://localhost/~/shopdb" />
+        <!--<property name="url" value="jdbc:h2:tcp://localhost/~/shopdb" />-->
+        <property name="url" value="jdbc:h2:~/test" />
         <property name="username" value="sa" />
         <property name="password" value="" />
     </bean>

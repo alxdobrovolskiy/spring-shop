@@ -9,20 +9,22 @@
            http://www.springframework.org/schema/security/spring-security.xsd">
 
     <security:http auto-config="true" pattern="/public/login.jsp" />
-    <security:http auto-config="true" pattern="/public/logout.jsp" />
+    <!--<security:http auto-config="true" pattern="/public/logout.jsp" />-->
     <security:http security="none" pattern="/public/*.*"/>
     <security:http security="none" pattern="/index.jsp"/>
-    <security:http security="none" pattern="/style.css"/>
+    <security:http security="none" pattern="/css/*.css"/>
     <security:http security="none" pattern="/favicon.ico"/>
     <security:http security="none" pattern="/admin/h2/*"/>
 
 
 
     <security:http auto-config="true" use-expressions="false">
-        <security:intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN,ROLE_MANAGER"/>
+        <security:intercept-url pattern="/" access="ROLE_USER,ROLE_ADMIN,ROLE_MANAGER"/>
+        <security:intercept-url pattern="/store/processSubmit" access="ROLE_USER,ROLE_ADMIN,ROLE_MANAGER"/>
         <security:form-login
                 login-page="/public/login.jsp"
                 default-target-url="/store"
+                always-use-default-target="true"
                 username-parameter="username"
                 password-parameter="password"
                 authentication-failure-url="/public/noaccess.jsp"/>
@@ -33,9 +35,9 @@
         <security:anonymous
                 granted-authority="ROLE_ANONYMOUS"
                 username="anonymous"/>
-        <security:intercept-url pattern="/public/*.*"  access="ROLE_USER,ROLE_ADMIN,ROLE_MANAGER,ROLE_ANONYMOUS"/>
+        <security:intercept-url pattern="/public/login.jsp" access="ROLE_USER,ROLE_ADMIN,ROLE_MANAGER,ROLE_ANONYMOUS"/>
         <security:intercept-url pattern="/index.jsp" access="ROLE_USER,ROLE_ADMIN,ROLE_MANAGER,ROLE_ANONYMOUS"/>
-        <security:intercept-url pattern="/style.css" access="ROLE_USER,ROLE_ADMIN,ROLE_MANAGER,ROLE_ANONYMOUS"/>
+        <security:intercept-url pattern="/css/*.css" access="ROLE_USER,ROLE_ADMIN,ROLE_MANAGER,ROLE_ANONYMOUS"/>
 
         <security:remember-me
                 key="shop_auth_key"
@@ -57,6 +59,21 @@
         <security:authentication-provider user-service-ref="userDetailsService"/>
     </security:authentication-manager>
 
+
+    <!--<bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">-->
+        <!--<property name="providers">-->
+            <!--<list>-->
+                <!--<ref bean="daoAuthProvider" />-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean id="daoAuthProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">-->
+        <!--<property name="userDetailsService" ref="userDetailsService"/>-->
+        <!--<property name="passwordEncoder" ref="passEncoder" />-->
+    <!--</bean>-->
+
+    <!--<bean id="passEncoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder"/>-->
 
     <bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
         <property name="dataSource" ref="dataSource"/>
